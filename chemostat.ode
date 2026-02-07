@@ -1,0 +1,18 @@
+# Chemostat model
+
+B'=v*(B*S)*(1/(S+K))-B*(rf+a*w*P)
+I'=a*w*B*P-I*(rf+1/tau)
+P'=-P*(rf+a*(B+I))+(beta*I)/tau
+S'=rf*(sigma*(1-(m/2)*(1+Y1))-S)-gamma*v*(B*S)*(1/(S+K))
+
+Y1' = omega*Y2 + Y1*(1-Y1^2-Y2^2)
+Y2' = -omega*Y1 + Y2*(1-Y1^2-Y2^2)
+
+par omega=0.004,m=0.5,a=0.001,w=0.8,v=0.024,K=10,rf=0.005,tau=30,beta=100,gamma=10,sigma=12
+init B=0.1,I=0,P=1,S=12, Y1=0, Y2=1
+
+@ AutoXMin=0.0, AutoXMax=0.01
+@ AutoYMin=0, AutoYMax=1.0
+@ Ntst=120, Nmax=2000, NPr=2000, ParMin=0, ParMax=1.0, Ds=0.001, Dsmax=0.01, Dsmin=0.0001
+
+@ total=10000, xp=t, yp=B, dt=0.1, xlo=0, xhi=10000, ylo=-0.1, yhi=1.0, maxstor=100000 
